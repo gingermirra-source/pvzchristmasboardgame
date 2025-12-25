@@ -528,11 +528,11 @@
   </div>
 
   <div class="hud">
-    <div class="roll-label">Брось кубик, чтобы идти вперёд</div>
+    <div class="roll-label">Roll the dice</div>
     <div class="dice2d" id="dice2d">
       <div class="pip-grid" id="pipGrid"></div>
     </div>
-    <div class="roll-result" id="rollResult">Готово к броску</div>
+    <div class="roll-result" id="rollResult">Ready to roll</div>
   </div>
 
   <div class="overlay" id="taskOverlay">
@@ -551,7 +551,7 @@
   <div class="fullscreen-overlay dark-note" id="darkNote">
     <div class="note-box modal-box">
       <div style="font-size:28px;margin-bottom:8px;color:#ffd700;">Go back 2 spaces</div>
-      <div style="opacity:.9;margin-bottom:14px;">Шагни назад на 2 клетки!</div>
+      <div style="opacity:.9;margin-bottom:14px;">Go back</div>
       <button class="btn" id="darkNoteOk">OK</button>
     </div>
   </div>
@@ -559,9 +559,9 @@
   <div class="fullscreen-overlay win-overlay" id="winOverlay">
     <div class="win-box modal-box">
       <h2 class="win-title">Great job!</h2>
-      <div style="margin-bottom:8px;">Хочешь открыть все остальные ячейки и посмотреть задания?</div>
+      <div style="margin-bottom:8px;">Let's click all the rest tiles!</div>
       <div class="win-score" id="winScore"></div>
-      <button class="btn" id="openAllBtn" style="margin-top:14px;">Открыть все остальные ячейки?</button>
+      <button class="btn" id="openAllBtn" style="margin-top:14px;">Open?</button>
     </div>
   </div>
 
@@ -615,11 +615,11 @@ const TASKS = {
   6:{ text:"You ___ got a friend.", answers:[
       {text:"are",correct:false},{text:"have",correct:true},{text:"has",correct:false}
   ]},
-  7:{ text:"The plant ___ got a red hat.", answers:[
+  7:{ text:"This plant ___ got a red hat.", answers:[
       {text:"has",correct:true},{text:"is",correct:false},{text:"have",correct:false}
   ]},
-  9:{ text:"Santa zombie ___ got a big bag.", answers:[
-      {text:"have",correct:false},{text:"is",correct:false},{text:"has",correct:true}
+  9:{ text:"I ___ got a big bag.", answers:[
+      {text:"has",correct:false},{text:"is",correct:false},{text:"have",correct:true}
   ]},
  10:{ text:"We ___ got warm mittens.", answers:[
       {text:"have",correct:true},{text:"has",correct:false},{text:"are",correct:false}
@@ -627,7 +627,7 @@ const TASKS = {
  12:{ text:"The snowman ___ got a carrot nose.", answers:[
       {text:"have",correct:false},{text:"is",correct:false},{text:"has",correct:true}
   ]},
- 13:{ text:"She ___ got a Christmas tree.", answers:[
+ 13:{ text:"She ___ got a cat.", answers:[
       {text:"is",correct:false},{text:"has",correct:true},{text:"have",correct:false}
   ]},
  15:{ text:"This zombie ___ got cold hands.", answers:[
@@ -934,7 +934,7 @@ function openTask(cellNum){
     overlayOpen=false;
 
     if(!freeExplore && lastCellAnsweredCorrect === NUM_TILES){
-      winScoreEl.textContent = 'Набранные очки: ' + score;
+      winScoreEl.textContent = 'Score: ' + score;
       winOverlay.classList.add('show');
     }
   }
@@ -1043,12 +1043,12 @@ dice2d.addEventListener('click',()=>{
   diceRolling=true;
 
   dice2d.classList.add('wiggle');
-  rollResultEl.textContent='Бросаем...';
+  rollResultEl.textContent='Roll...';
 
   const n = 1 + Math.floor(Math.random()*6);
   rollDiceVisual(n,()=>{
     dice2d.classList.remove('wiggle'); 
-    rollResultEl.textContent='Выпало: '+n;
+    rollResultEl.textContent='Result: '+n;
     moveSteps(n);
     diceRolling=false;
     firstRoll = false;
@@ -1067,7 +1067,7 @@ openAllBtn.addEventListener('click',()=>{
     t.classList.remove('inactive','target');
     t.classList.add('active');
   });
-  rollResultEl.textContent = 'Свободный режим: нажимай на любые клеточки с вопросами';
+  rollResultEl.textContent = 'Free mode:click all the tiles!';
 });
 
 function initAll(){
@@ -1081,7 +1081,7 @@ function initAll(){
   currentIndex=-1;
   updateHighlights();
   renderPips(1);
-  rollResultEl.textContent='Готово к броску';
+  rollResultEl.textContent='Ready to roll';
 
   dice2d.classList.add('wiggle');
   setTimeout(()=>{ if(firstRoll) dice2d.classList.remove('wiggle'); }, 1200);
@@ -1100,3 +1100,4 @@ initAll();
 </script>
 </body>
 </html>
+
